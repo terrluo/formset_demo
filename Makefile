@@ -1,3 +1,6 @@
+install_require:
+	pip install -r requirements.txt
+
 makemigrations:
 	python manage.py makemigrations
 
