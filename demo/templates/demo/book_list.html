@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h3>Book list</h3>
+    <ul>
+    {% for b in books %}
+        <li>{{ b.name }} - {{ b.created_date }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}

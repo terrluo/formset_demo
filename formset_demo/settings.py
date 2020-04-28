@@ -151,17 +151,9 @@ LOGGING = {
     },
     'loggers': {
         # 处理我们自己写的 log
-        '': {
+        'demo': {
             'handlers': ['console'],
             'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
-        },
-        # 处理 django 自己打印的 log
-        'django': {
-            'handlers': ['console'],
-            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
-            # 设置 False 时不会再向上广播，也就是这条 log 不会再发送给 'django' 的上级 '' 处理，
-            # 使得 django 自己的 log 都在 'django' 处理，而我们自己写的 log 就会在 '' 处理
-            'propagate': False,
         },
     },
 }

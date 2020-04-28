@@ -1,8 +1,32 @@
 #!/usr/bin/python
 from django import forms
-from django.forms import modelformset_factory
+from django.forms import modelformset_factory, formset_factory, BaseFormSet
 
 from demo.models import Book
+
+
+class BookForm(forms.Form):
+    name = forms.CharField(label='书名')
+
+
+class BaseBookFormset(BaseFormSet):
+    def clean(self):
+        """Checks that no two articles have the same name."""
+
+        if any(self.errors):
+            # Don't bother validating the formset unless each form is valid on its own
+            return
+        names = []
+        for form in self.forms:
+            if self.can_delete and self._should_delete_form(form):
+                continue
+            name = form.cleaned_data.get('name')
+            if name in names:
+                raise forms.ValidationError("Book in a set must have distinct names.")
+            names.append(name)
+
+
+BookFormSet = formset_factory(BookForm, formset=BaseBookFormset, extra=1, can_delete=True)
 
 
 class BookModelForm(forms.ModelForm):
@@ -10,7 +34,9 @@ class BookModelForm(forms.ModelForm):
         model = Book
         exclude = ['created_date', 'modified_date']
 
+    def __init__(self, *args, **kwargs):
+        super(BookModelForm, self).__init__(*args, **kwargs)
+        self.fields['name'].label = '书名'
 
-# 1、如果不想但 post 请求没有数据时，FormSet 但 is_valid() 还是 True 的话，就要设置 min_num
-# 2、在 views 里创建 BookModelFormSet 的话，在验证通过调用 save 方法时，save 会警告 Parameter 'self' unfilled，我现在还不知道是为什么
-BookModelFormSet = modelformset_factory(model=Book, form=BookModelForm, min_num=1)
+
+BookModelFormSet = modelformset_factory(model=Book, form=BookModelForm, extra=1, min_num=1, can_delete=True)

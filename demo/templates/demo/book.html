@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h3>{{ heading }}</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ formset.management_form }}
+        <div id="form_set">
+            {% for form in formset.forms %}
+                {{ form.non_field_errors }}
+                {{ form.errors }}
+                <table class='no_error'>
+                    {{ form }}
+                </table>
+            {% endfor %}
+        </div>
+        <input type="button" value="Add More" id="add_more">
+        <input type="button" value="Remove" id="remove">
+        <input type="submit" value="Submit">
+    </form>
+    <div id="empty_form" style="display:none">
+        <table class='no_error'>
+            {{ formset.empty_form }}
+        </table>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $('#add_more').click(function () {
+            var $totalForm = $('#id_form-TOTAL_FORMS');
+            var totalCount = $totalForm.val();
+            $('#form_set').append($('#empty_form').html().replace(/__prefix__/g, totalCount));
+            $totalForm.val(parseInt(totalCount) + 1);
+        });
+
+        $('#remove').click(function () {
+            var $totalForm = $('#id_form-TOTAL_FORMS');
+            var $initialForm = $('#id_form-INITIAL_FORMS');
+            var totalCount = $totalForm.val();
+            var initalCount = $initialForm.val();
+            if (parseInt(totalCount) - 1 >= initalCount) {
+                $totalForm.val(parseInt(totalCount) - 1);
+                $('#form_set .no_error:last').remove();
+            }
+        });
+    </script>
+{% endblock %}

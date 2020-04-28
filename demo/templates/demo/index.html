@@ -3,66 +3,11 @@
     FormSet Demo
 {% endblock %}
 
-{% block style %}
-    <style>
-        table, table tr th, table tr td {
-            border: 1px solid grey;
-        }
-
-        table {
-            width: 300px;
-            min-height: 25px;
-            line-height: 25px;
-            text-align: center;
-            border-collapse: collapse;
-        }
-
-        .errorlist {
-            margin-block-start: 0;
-            margin-block-end: 0;
-            color: red;
-        }
-    </style>
-{% endblock %}
-
-{% block body %}
-    <h1>Book FormSet</h1>
-    <form method="post">{% csrf_token %}
-        {{ book_formset.management_form }}
-        {{ book_formset.non_form_errors }}
-        {% for form in book_formset %}
-            <table>
-                <tbody>
-                <tr>
-                    <th colspan="2">Book</th>
-                </tr>
-                <tr>
-                    <td>Book Name:</td>
-                    <td>
-                        {{ form.id }}
-                        {{ form.name }}
-                        {{ form.name.errors }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>Book Author:</td>
-                    <td>
-                        {{ form.author }}
-                        {{ form.author.errors }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>Publish Date:</td>
-                    <td>
-                        {{ form.pub_date }}
-                        {{ form.pub_date.errors }}
-                    </td>
-                </tr>
-                </tbody>
-            </table><br>
-        {% endfor %}
-        <input type="button" value="add book">
-        <input type="submit" value="submit">
-        <input type="reset" value="reset">
-    </form>
+{% block content %}
+    <h3>Urls</h3>
+    <ul>
+    {% for name, url in urls.items %}
+        <li><a href="{{ url }}" target="_blank">name</a></li>
+    {% endfor %}
+    </ul>
 {% endblock %}
