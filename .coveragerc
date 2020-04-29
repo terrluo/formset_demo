@@ -1,5 +1,5 @@
 [run]
-source = formset_demo
+source = .
 
 [report]
 # Regexes for lines to exclude from consideration
@@ -20,6 +20,7 @@ exclude_lines =
     if __name__ == .__main__.:
 
 omit =
-    formset_demo/manage.py
-    formset_demo/formset_demo/urls.py
-    formset_demo/formset_demo/wsgi.py
+    manage.py
+    venv/*
+    formset_demo/urls.py
+    formset_demo/wsgi.py

@@ -24,5 +24,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 ]
 
-if settings.DEBUG:
+if settings.DEBUG:  # pragma: no cover
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
