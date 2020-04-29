@@ -2,9 +2,13 @@
 
 {% block content %}
     <h3>Book list</h3>
+    {% if not books %}
+        Book Not Found
+    {% endif %}
+
     <ul>
     {% for b in books %}
-        <li>{{ b.name }} - {{ b.created_date }}</li>
+        <li>{{ b.name }} - {{ b.pub_date }}</li>
     {% endfor %}
     </ul>
 {% endblock %}

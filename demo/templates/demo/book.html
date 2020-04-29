@@ -1,5 +1,19 @@
 {% extends 'base.html' %}
 
+{% block style %}
+    <style>
+        .errorlist {
+            color: red;
+            list-style-type: none;
+            margin-block-start: 1em;
+            margin-block-end: 0;
+            margin-inline-start: 0;
+            margin-inline-end: 0;
+            padding-inline-start: 0;
+        }
+    </style>
+{% endblock %}
+
 {% block content %}
     <h3>{{ heading }}</h3>
     <form method="post">
@@ -8,10 +22,9 @@
         <div id="form_set">
             {% for form in formset.forms %}
                 {{ form.non_field_errors }}
-                {{ form.errors }}
                 <table class='no_error'>
                     {{ form }}
-                </table>
+                </table><br>
             {% endfor %}
         </div>
         <input type="button" value="Add More" id="add_more">
@@ -44,5 +57,9 @@
                 $('#form_set .no_error:last').remove();
             }
         });
+
+        $("#form_set input[name$='-pub_date']").datepicker().each(function () {
+            $(this).attr('autocomplete', 'off')
+        })
     </script>
 {% endblock %}

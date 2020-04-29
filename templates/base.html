@@ -5,20 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{% block title %}FormSet Demo{% endblock %}</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon_io/apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon_io/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon_io/favicon-16x16.png' %}">
-    <link rel="manifest" href="{% static 'favicon_io/site.webmanifest' %}">
-    <style></style>
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon_io/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon_io/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon_io/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'images/favicon_io/site.webmanifest' %}">
+    <link rel="stylesheet" href="{% static 'lib/jquery-ui-1.12.1/jquery-ui.min.css' %}">
     {% block style %}{% endblock %}
 </head>
 <body>
 <div class="container">
     {% block content %}{% endblock %}
 
-    <script src="https://code.jquery.com/jquery-3.5.0.js"
-            integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" crossorigin="anonymous"></script>
-    <script></script>
+    <script src="{% static 'lib/jquery-ui-1.12.1/external/jquery/jquery.js' %}"></script>
+    <script src="{% static 'lib/jquery-ui-1.12.1/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'lib/jquery-ui-1.12.1/jquery-ui-datepicker-zh-CN.js' %}"></script>
     {% block script %}{% endblock %}
 </div>
 </body>

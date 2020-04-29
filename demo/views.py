@@ -4,7 +4,7 @@ import logging
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
-from demo.forms import BookFormSet, BookModelFormSet
+from demo.forms import BookModelFormSet
 from demo.models import Book
 
 logger = logging.getLogger(__name__)
@@ -12,7 +12,8 @@ logger = logging.getLogger(__name__)
 
 def index(request):
     urls = {
-        'book': reverse('demo:book')
+        'book': reverse('demo:book'),
+        'book_list': reverse('demo:book_list'),
     }
     return render(request=request, template_name='demo/index.html', context=locals())
 

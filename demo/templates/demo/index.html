@@ -7,7 +7,7 @@
     <h3>Urls</h3>
     <ul>
     {% for name, url in urls.items %}
-        <li><a href="{{ url }}" target="_blank">name</a></li>
+        <li><a href="{{ url }}" target="_blank">{{ name }}</a></li>
     {% endfor %}
     </ul>
 {% endblock %}
