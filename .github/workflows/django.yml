@@ -28,4 +28,4 @@ jobs:
       run: |
         make coverage
     - name: Coveralls Python
-        uses: AndreMiras/coveralls-python-action@v20200413
+      uses: AndreMiras/coveralls-python-action@v20200413
