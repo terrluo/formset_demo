@@ -29,6 +29,6 @@ jobs:
         make coverage
     - name: Coveralls Python
       uses: AndreMiras/coveralls-python-action@v20200413
-      with:
-        parallel: true
-        parallel-finished: true
+#      with:
+#        parallel: true
+#        parallel-finished: true
