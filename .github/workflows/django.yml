@@ -21,11 +21,11 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Coveralls Python
-      uses: AndreMiras/coveralls-python-action@v20200413
     - name: Install Dependencies
       run: |
         make install_test
     - name: Run Tests
       run: |
         make coverage
+    - name: Coveralls Python
+        uses: AndreMiras/coveralls-python-action@v20200413
