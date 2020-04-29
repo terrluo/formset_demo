@@ -36,11 +36,11 @@
 
         $('#remove').click(function () {
             var $totalForm = $('#id_form-TOTAL_FORMS');
-            var $initialForm = $('#id_form-INITIAL_FORMS');
             var totalCount = $totalForm.val();
-            var initalCount = $initialForm.val();
-            if (parseInt(totalCount) - 1 >= initalCount) {
-                $totalForm.val(parseInt(totalCount) - 1);
+            var initalCount = $('#id_form-INITIAL_FORMS').val();
+            var result = parseInt(totalCount) - 1
+            if (result >= initalCount) {
+                $totalForm.val(result);
                 $('#form_set .no_error:last').remove();
             }
         });
