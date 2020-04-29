@@ -23,5 +23,6 @@ exclude_lines =
 omit =
     manage.py
     venv/*
+    */migrations/*
     formset_demo/urls.py
     formset_demo/wsgi.py
