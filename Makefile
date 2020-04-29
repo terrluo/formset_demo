@@ -1,9 +1,8 @@
-#export DJANGO_SETTINGS_MODULE=formset_demo.settings
-
 install_require:
 	pip install -r requirements/requirements.txt
 
 install_test:
+	python -m pip install --upgrade pip
 	pip install -r requirements/requirements-test.txt
 
 makemigrations:
