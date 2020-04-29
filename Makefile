@@ -8,7 +8,9 @@ migrate:
 	python manage.py migrate
 
 test:
-	python manage.py test
+	flake8 simple_datatable --ignore=E501
+	coverage run `which django-admin.py` test
+	coverage report
 
 run:
 	python manage.py runserver
