@@ -1,6 +1,15 @@
+from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.views.generic.detail import SingleObjectTemplateResponseMixin
 from django.views.generic.edit import BaseCreateView, BaseUpdateView
+
+
+class SuccessMessageMixin(object):
+    success_message = ''
+
+    def get_success_url(self):
+        messages.success(self.request, self.success_message)
+        return super(SuccessMessageMixin, self).get_success_url()
 
 
 class FormSetMixin(object):
@@ -28,7 +37,7 @@ class FormSetMixin(object):
         return HttpResponseRedirect(self.get_success_url())
 
     def form_invalid(self, form, formset):
-        return self.render_to_response(**{'form': form, self.formset_name: formset})
+        return self.render_to_response(self.get_context_data(**{'form': form, self.formset_name: formset}))
 
 
 class FormSetCreateView(SingleObjectTemplateResponseMixin, FormSetMixin, BaseCreateView):
