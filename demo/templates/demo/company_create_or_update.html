@@ -1,0 +1,63 @@
+{% extends 'demo/base.html' %}
+{% block title %}{{ view.action }}公司{% endblock %}
+{% block style %}
+    <style>
+        #empty_form {
+            display: none;
+        }
+    </style>
+{% endblock %}
+{% block main %}
+    <div class="breadcrumb">
+        <a href="{% url 'demo:index' %}">目录</a>
+        > {{ view.action }}公司
+    </div>
+    <h2>{{ view.action }}公司</h2>
+    {% include 'core/snippets/messages.html' %}
+    <form method="post">
+        {% csrf_token %}
+        {% include 'core/snippets/form_table.html' with form=form %}
+        <fieldset>
+            <legend>公司员工</legend>
+            {{ employee_forms.management_form }}
+            <div class="form-errors">{{ employee_forms.non_form_errors }}</div>
+            {% for emp_form in employee_forms %}
+                <div class="employee-form">
+                    {% include 'core/snippets/form_table.html' with form=emp_form %}
+                    <hr>
+                </div>
+            {% endfor %}
+        </fieldset>
+        <input id="add-employee" type="button" class="button-positive" value="添加">
+        <input id="remove-employee" type="button" class="button-positive" value="移除">
+        <input type="submit" class="button-positive" value="保存">
+    </form>
+    <a class="button-negative" href="{% url 'demo:company_list' %}">取消</a>
+    <div id="empty_form">
+        <div class="employee-form">
+            {% include 'core/snippets/form_table.html' with form=employee_forms.empty_form %}
+            <hr>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script>
+        $('#add-employee').click(function () {
+            var $totalForm = $('#id_employees-TOTAL_FORMS');
+            var totalCount = $totalForm.val();
+            $('fieldset').append($('#empty_form').html().replace(/__prefix__/g, totalCount));
+            $totalForm.val(parseInt(totalCount) + 1);
+        });
+
+        $('#remove-employee').click(function () {
+            var $totalForm = $('#id_employees-TOTAL_FORMS');
+            var totalCount = $totalForm.val();
+            var initalCount = $('#id_employees-INITIAL_FORMS').val();
+            var result = parseInt(totalCount) - 1
+            if (result >= initalCount) {
+                $totalForm.val(result);
+                $('fieldset .employee-form:last').remove();
+            }
+        });
+    </script>
+{% endblock %}

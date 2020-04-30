@@ -1,12 +1,14 @@
 #!/usr/bin/python
 from django.conf.urls import url
 
-from demo.views import index, book, book_list
+from demo.views import IndexView, CompanyListView, CompanyCreateView, CompanyUpdateView, CompanyDeleteVieW
 
 app_name = 'demo'
 
 urlpatterns = [
-    url(r'^$', index, name='index'),
-    url(r'^book$', book, name='book'),
-    url(r'^book_list$', book_list, name='book_list'),
+    url(r'^$', IndexView.as_view(), name='index'),
+    url(r'^company_list/$', CompanyListView.as_view(), name='company_list'),
+    url(r'^company_create/$', CompanyCreateView.as_view(), name='company_create'),
+    url(r'^company/(?P<company_id>\d+)/$', CompanyUpdateView.as_view(), name='company_update'),
+    url(r'^company/(?P<company_id>\d+)/delete/$', CompanyDeleteVieW.as_view(), name='company_delete'),
 ]

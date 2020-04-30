@@ -1,13 +1,2 @@
-{% extends 'base.html' %}
-{% block title %}
-    FormSet Demo
-{% endblock %}
-
-{% block content %}
-    <h3>Urls</h3>
-    <ul>
-    {% for name, url in urls.items %}
-        <li><a href="{{ url }}" target="_blank">{{ name }}</a></li>
-    {% endfor %}
-    </ul>
-{% endblock %}
+{% extends 'demo/base.html' %}
+{% block title %}目录{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'demo/base.html' %}
+{% block style %}
+    <style>
+        #dj-container .index-container .company-table {
+            font-size: 1.2rem;
+        }
+
+        #dj-container .index-container .company-employees {
+            margin: 0;
+            padding: 0;
+        }
+
+        #dj-container .index-container .company-employees li {
+            margin: 0.25rem 0 0.25rem 1.5rem;
+            padding: 0;
+        }
+
+        @media screen and (min-width: 64em) {
+            #dj-container .index-container .table-header {
+                display: grid;
+                grid-template-columns: 2fr 3fr 2fr 3fr 2fr;
+                grid-template-rows: auto;
+            }
+
+            #dj-container .index-container .table-body {
+                display: grid;
+                grid-template-columns: 2fr 3fr 2fr 3fr 2fr;
+                grid-template-rows: auto;
+            }
+        }
+    </style>
+{% endblock %}
+{% block title %}公司{% endblock %}
+{% block main %}
+    <div class="breadcrumb">
+        <a href="{% url 'demo:index' %}">目录</a>
+        > 公司
+    </div>
+    <h2>公司</h2>
+    {% include 'core/snippets/messages.html' %}
+    <a class="button-positive" href="{% url 'demo:company_create' %}">创建公司</a>
+    {% if companies %}
+        <div class="company-table">
+            <div class="table-header">
+                <div>公司名称</div>
+                <div>员工</div>
+            </div>
+            {% for company in companies %}
+                <div class="table-body">
+                    <div>
+                        <span class="table-title">公司名称</span>
+                        {{ company.name }}
+                    </div>
+                    <div>
+                        <span class="table-title">员工</span>
+                        <ul class="company-employees">
+                            {% for employee in company.employees.all %}
+                                <li>
+                                    {{ employee.name }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div>
+                        <a class="button-positive" href="{% url 'demo:company_update' company.id %}">编辑</a>
+                        <a class="button-negative" href="{% url 'demo:company_delete' company.id %}">删除</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <a class="button-positive" href="{% url 'demo:company_create' %}">创建公司</a>
+    {% else %}
+        <p>公司不存在</p>
+    {% endif %}
+
+{% endblock %}

@@ -1,44 +1,66 @@
-import json
-import logging
+from django.contrib import messages
+from django.forms import inlineformset_factory
+from django.urls import reverse_lazy
+from django.views.generic import TemplateView, ListView, DeleteView
 
-from django.shortcuts import render, redirect
-from django.urls import reverse
-
-from demo.forms import BookModelFormSet
-from demo.models import Book
-
-logger = logging.getLogger(__name__)
+from core.views import FormSetCreateView, FormSetUpdateView
+from demo.forms import CompanyForm, EmployeeForm
+from demo.models import Company, Employee
 
 
-def index(request):
-    urls = {
-        'book': reverse('demo:book'),
-        'book_list': reverse('demo:book_list'),
-    }
-    return render(request=request, template_name='demo/index.html', context=locals())
+class IndexView(TemplateView):
+    template_name = 'demo/index.html'
 
 
-def book(request):
-    heading_message = 'Formset Demo'
-    books = Book.objects.all()
-    if request.method == 'GET':
-        formset = BookModelFormSet(queryset=books)
-    else:
-        logger.info(json.dumps(request.POST, indent=4))
-        formset = BookModelFormSet(request.POST, queryset=books)
-        if formset.is_valid():
-            formset.save()
-            return redirect(reverse('demo:book_list'))
-    return render(
-        request=request,
-        template_name='demo/book.html',
-        context={
-            'formset': formset,
-            'heading': heading_message,
-        }
+class CompanyListView(ListView):
+    model = Company
+    context_object_name = 'companies'
+    template_name = 'demo/company_list.html'
+
+
+class CompanyCreateView(FormSetCreateView):
+    model = Company
+    context_object_name = 'company'
+    form_class = CompanyForm
+    success_message = '创建成功'
+    success_url = reverse_lazy('demo:company_list')
+    template_name = 'demo/company_create_or_update.html'
+    formset_name = 'employee_forms'
+    formset_class = inlineformset_factory(
+        parent_model=Company,
+        model=Employee,
+        form=EmployeeForm,
+        can_delete=False,
+        extra=1,
+    )
+
+    def get_success_url(self):
+        messages.success(self.request, self.success_message)
+        return super(CompanyCreateView, self).get_success_url()
+
+
+class CompanyUpdateView(FormSetUpdateView):
+    model = Company
+    context_object_name = 'company'
+    form_class = CompanyForm
+    pk_url_kwarg = 'company_id'
+    success_message = '修改成功'
+    success_url = reverse_lazy('demo:company_list')
+    template_name = 'demo/company_create_or_update.html'
+    formset_name = 'employee_forms'
+    formset_class = inlineformset_factory(
+        parent_model=Company,
+        model=Employee,
+        form=EmployeeForm,
+        can_delete=True,
+        extra=1,
     )
 
 
-def book_list(request):
-    books = Book.objects.all()
-    return render(request=request, template_name='demo/book_list.html', context={'books': books})
+class CompanyDeleteVieW(DeleteView):
+    model = Company
+    context_object_name = 'company'
+    pk_url_kwarg = 'company_id'
+    success_message = '删除成功'
+    success_url = reverse_lazy('demo:company_list')
+    template_name = 'demo/company_delete.html'

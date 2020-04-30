@@ -1,0 +1,280 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#dj-container {
+    color: rgb(25, 25, 25);
+    font-family: 'Telex', sans-serif;
+    font-size: 1.5rem;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+#dj-container main a {
+    color: rgb(50, 160, 175);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+#dj-container main a:hover {
+    color: rgb(10, 90, 100);
+}
+
+#dj-container .messages {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#dj-container .messages .debug, #dj-container .messages .info,
+#dj-container .messages .success {
+    color: rgb(50, 160, 175);
+    padding: 0.5rem 0;
+}
+
+#dj-container .messages .warning, #dj-container .messages .error {
+    color: rgb(150, 10, 10);
+    padding: 0.5rem 0;
+}
+
+#dj-container .errorlist {
+    color: rgb(150, 10, 10);
+    font-size: 1.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#dj-container .button-positive {
+    background-color: transparent;
+    border: 1px solid rgb(50, 160, 175);
+    box-sizing: border-box;
+    border-radius: 5px;
+    color: rgb(50, 160, 175);
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0.25rem 0;
+    min-width: 120px;
+    padding: 0.25rem 0.5rem;
+    text-align: center;
+}
+
+#dj-container .button-positive:hover {
+    border-color: rgb(10, 90, 100);
+    color: rgb(10, 90, 100);
+}
+
+#dj-container .button-negative {
+    background-color: transparent;
+    border: 1px solid rgb(150, 10, 10);
+    box-sizing: border-box;
+    border-radius: 5px;
+    color: rgb(150, 10, 10);
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0.25rem 0;
+    min-width: 120px;
+    padding: 0.25rem 0.5rem;
+    text-align: center;
+}
+
+#dj-container .button-negative:hover {
+    border-color: rgb(80, 10, 10);
+    color: rgb(80, 10, 10);
+}
+
+#dj-container .index-container {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: min-content min-content auto auto;
+    grid-template-areas: "header" "nav" "main";
+    min-height: 100%;
+    width: 100%;
+    max-width: 100%;
+}
+
+#dj-container .index-container header {
+    background-color: rgb(235, 235, 235);
+    box-sizing: border-box;
+    color: rgb(100, 100, 100);
+    grid-area: header;
+}
+
+#dj-container .index-container h1 {
+    font-size: 2.25rem;
+    margin: 0;
+    padding: 0.5rem;
+}
+
+#dj-container .index-container h2 {
+    margin: 0;
+    padding: 1rem 0;
+}
+
+#dj-container .index-container .subtitle {
+    display: block;
+    margin: 0;
+    padding: 1rem 0.5rem 0.5rem 0.5rem;
+}
+
+#dj-container .index-container nav {
+    background-color: rgb(255, 255, 255);
+    border-right: 2px solid rgb(235, 235, 235);
+    color: rgb(25, 25, 25);
+    grid-area: nav;
+    margin: 0;
+    padding: 0;
+}
+
+#dj-container .index-container nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#dj-container .index-container nav li {
+    margin: 0;
+    padding: 0;
+}
+
+#dj-container .index-container nav a {
+    border-left: 4px solid rgb(255, 255, 255);
+    border-bottom: 1px solid rgb(235, 235, 235);
+    box-sizing: border-box;
+    color: inherit;
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 400;
+    padding: 1rem 0.5rem;
+    text-decoration: none;
+}
+
+#dj-container .index-container nav a:hover {
+    border-left: 4px solid rgb(50, 160, 175);
+    color: rgb(50, 160, 175);
+}
+
+#dj-container .index-container nav a.selected {
+    border-left: 4px solid rgb(50, 160, 175);
+    color: rgb(50, 160, 175);
+}
+
+#dj-container .index-container input {
+    box-sizing: border-box;
+    font-size: 1.5rem;
+    padding: 0.25rem 0.5rem;
+    width: 100%;
+}
+
+#dj-container .index-container input:focus {
+    border: 1px solid rgb(50, 160, 175);
+}
+
+#dj-container .index-container input[type="submit"], #dj-container .index-container input[type="button"] {
+    background-color: transparent;
+    cursor: pointer;
+    font-weight: 500;
+    width: auto;
+}
+
+#dj-container .index-container select {
+    font-size: 1.5rem;
+}
+
+#dj-container .index-container main {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 1rem 2rem;
+    grid-area: main;
+}
+
+#dj-container .index-container .breadcrumb {
+    font-size: 1rem;
+}
+
+#dj-container .index-container .pagination {
+    margin: 0.5rem 0;
+}
+
+#dj-container .index-container .company-table {
+    margin: 1rem 0;
+}
+
+#dj-container .index-container .table-header {
+    display: none;
+    font-weight: 700;
+    padding: 0.5rem 1rem;
+}
+
+#dj-container .index-container .table-header > div {
+    padding: 0 0.5rem;
+}
+
+#dj-container .index-container .table-body {
+    padding: 0.5rem 1rem;
+}
+
+#dj-container .index-container .table-body > div {
+    margin: 1rem 0;
+    padding: 0 0.5rem;
+}
+
+#dj-container .index-container .table-body:nth-child(even) {
+    background-color: rgb(245, 245, 245);
+}
+
+#dj-container .index-container .table-title {
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0.25rem 0;
+}
+
+#dj-container .index-container .form-field {
+    margin: 0.5rem 0;
+    max-width: 600px;
+}
+
+#dj-container .index-container .form-field-label {
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 0.25rem 0;
+}
+
+#dj-container .index-container .form-field-label .form-field-require {
+    color: red;
+}
+
+#dj-container .index-container .form-field-help-text {
+    display: block;
+    font-size: 1rem;
+    font-style: italic;
+    padding: 0.5rem 0;
+}
+
+@media screen and (min-width: 64em) {
+    #dj-container .index-container {
+        display: grid;
+        grid-template-columns: 12em auto;
+        grid-template-rows: 8rem auto;
+        grid-template-areas: "header header" "nav main";
+        width: 100%;
+    }
+
+    #dj-container .index-container .table-title {
+        display: none;
+    }
+
+}

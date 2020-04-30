@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}表单集实例{% endblock %}</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'core/images/favicon_io/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static '/core/images/favicon_io/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static '/core/images/favicon_io/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static '/core/images/favicon_io/site.webmanifest' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/core/css/core.css' %}">
+    {% block style %}{% endblock %}
+</head>
+<body>
+<div id="dj-container">
+    {% block content %}{% endblock %}
+
+    <script src="{% static '/core/js/jquery.js' %}"></script>
+    {% block script %}{% endblock %}
+</div>
+</body>
+</html>

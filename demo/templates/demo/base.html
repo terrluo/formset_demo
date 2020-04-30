@@ -1,0 +1,24 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+    <div class="index-container">
+        <header>
+            <h1>表单集实例</h1>
+            <span class="subtitle">目录</span>
+        </header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="{% url 'demo:company_list' %}"
+                            {% if view.context_object_name == 'companies' or view.context_object_name == 'company' %}
+                       class="selected"
+                            {% endif %}
+                    >
+                        公司
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <main>{% block main %}{% endblock %}</main>
+    </div>
+{% endblock %}

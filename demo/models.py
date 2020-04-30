@@ -1,9 +1,12 @@
 from django.db import models
 
+from core.models import CoreModel
 
-class Book(models.Model):
-    name = models.CharField('书名', max_length=50)
-    pub_date = models.DateField('出版日期')
 
-    created_date = models.DateTimeField(auto_now_add=True)
-    modified_date = models.DateTimeField(auto_now=True)
+class Company(CoreModel):
+    name = models.CharField('公司名称', max_length=10)
+
+
+class Employee(CoreModel):
+    name = models.CharField('员工姓名', max_length=10)
+    company = models.ForeignKey(Company, related_name='employees', on_delete=models.CASCADE, verbose_name='公司')

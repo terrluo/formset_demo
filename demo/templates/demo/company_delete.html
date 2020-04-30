@@ -1,0 +1,18 @@
+{% extends 'demo/base.html' %}
+{% block title %}删除公司{% endblock %}
+{% block main %}
+    <div class="breadcrumb">
+        <a href="{% url 'demo:index' %}">目录</a>
+        > 删除公司
+    </div>
+    <h2>删除公司</h2>
+    <div>确定要删除公司吗?</div>
+    <blockquote>
+        <strong>公司名称:</strong> {{ company.name }}<br>
+    </blockquote>
+    <form method="POST">
+        {% csrf_token %}
+        <input class="button-negative" type="submit" value="删除">
+    </form>
+    <a class="button-negative" href="{% url 'demo:company_list' %}">取消</a>
+{% endblock %}
