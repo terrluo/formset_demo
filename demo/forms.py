@@ -1,6 +1,6 @@
 #!/usr/bin/python
 from django import forms
-from django.forms import modelformset_factory, formset_factory, BaseFormSet
+from django.forms import modelformset_factory
 
 from demo.models import Book
 
