@@ -1,7 +1,12 @@
+import json
+import logging
+
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-from django.views.generic.detail import SingleObjectTemplateResponseMixin
-from django.views.generic.edit import BaseCreateView, BaseUpdateView
+from django.views.generic import UpdateView, CreateView
+
+
+logger = logging.getLogger(__name__)
 
 
 class SuccessMessageMixin(object):
@@ -22,6 +27,8 @@ class FormSetMixin(object):
         return self.render_to_response(self.get_context_data(**{'form': form, self.formset_name: formset}))
 
     def post(self, request, *args, **kwargs):
+        logger.info(json.dumps(request.POST, indent=4))
+
         form = self.get_form(self.get_form_class())
         formset = self.formset_class(self.request.POST, instance=self.object)
 
@@ -40,9 +47,8 @@ class FormSetMixin(object):
         return self.render_to_response(self.get_context_data(**{'form': form, self.formset_name: formset}))
 
 
-class FormSetCreateView(SingleObjectTemplateResponseMixin, FormSetMixin, BaseCreateView):
+class FormSetCreateView(SuccessMessageMixin, FormSetMixin, CreateView):
     action = '创建'
-    template_name_suffix = '_form'
 
     def get(self, request, *args, **kwargs):
         self.object = None
@@ -53,9 +59,8 @@ class FormSetCreateView(SingleObjectTemplateResponseMixin, FormSetMixin, BaseCre
         return super().post(request, *args, **kwargs)
 
 
-class FormSetUpdateView(SingleObjectTemplateResponseMixin, FormSetMixin, BaseUpdateView):
+class FormSetUpdateView(SuccessMessageMixin, FormSetMixin, UpdateView):
     action = '编辑'
-    template_name_suffix = '_form'
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()

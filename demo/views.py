@@ -1,4 +1,3 @@
-from django.contrib import messages
 from django.forms import inlineformset_factory
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, DeleteView
@@ -18,7 +17,7 @@ class CompanyListView(ListView):
     template_name = 'demo/company_list.html'
 
 
-class CompanyCreateView(SuccessMessageMixin, FormSetCreateView):
+class CompanyCreateView(FormSetCreateView):
     model = Company
     context_object_name = 'company'
     form_class = CompanyForm
@@ -31,11 +30,12 @@ class CompanyCreateView(SuccessMessageMixin, FormSetCreateView):
         model=Employee,
         form=EmployeeForm,
         can_delete=False,
+        min_num=1,
         extra=1,
     )
 
 
-class CompanyUpdateView(SuccessMessageMixin, FormSetUpdateView):
+class CompanyUpdateView(FormSetUpdateView):
     model = Company
     context_object_name = 'company'
     form_class = CompanyForm
@@ -49,11 +49,12 @@ class CompanyUpdateView(SuccessMessageMixin, FormSetUpdateView):
         model=Employee,
         form=EmployeeForm,
         can_delete=True,
+        min_num=1,
         extra=1,
     )
 
 
-class CompanyDeleteVieW(SuccessMessageMixin, DeleteView):
+class CompanyDeleteView(SuccessMessageMixin, DeleteView):
     model = Company
     context_object_name = 'company'
     pk_url_kwarg = 'company_id'

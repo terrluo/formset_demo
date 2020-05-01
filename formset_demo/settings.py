@@ -151,8 +151,7 @@ LOGGING = {
         },
     },
     'loggers': {
-        # 处理我们自己写的 log
-        'demo': {
+        '': {
             'handlers': ['console'],
             'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
         },
