@@ -253,6 +253,10 @@ html, body {
     padding: 0.25rem 0;
 }
 
+#dj-container .index-container input[type='checkbox'] {
+    width: 12px;
+}
+
 #dj-container .index-container .form-field-label .form-field-require {
     color: red;
 }
