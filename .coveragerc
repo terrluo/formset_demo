@@ -24,5 +24,6 @@ omit =
     manage.py
     venv/*
     */migrations/*
+    */tests/*
     formset_demo/urls.py
     formset_demo/wsgi.py
