@@ -254,8 +254,9 @@ html, body {
 }
 
 #dj-container .index-container input[type='checkbox'] {
-    width: 0.75rem;
     margin-left: 0.1rem;
+    height: 1rem;
+    width: 1rem;
 }
 
 #dj-container .index-container .form-field-label .form-field-require {
