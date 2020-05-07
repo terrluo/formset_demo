@@ -29,19 +29,22 @@ html, body {
 
 #dj-container .messages {
     list-style: none;
-    margin: 0;
+    margin: 0.5rem 0;
     padding: 0;
+    color: white;
 }
 
 #dj-container .messages .debug, #dj-container .messages .info,
 #dj-container .messages .success {
-    color: rgb(50, 160, 175);
-    padding: 0.5rem 0;
+    padding: 0.5rem;
+    background: rgb(50, 160, 175);
+    border-radius: 0.5rem;
 }
 
 #dj-container .messages .warning, #dj-container .messages .error {
-    color: rgb(150, 10, 10);
-    padding: 0.5rem 0;
+    padding: 0.5rem;
+    background: rgb(150, 10, 10);
+    border-radius: 0.5rem;
 }
 
 #dj-container .errorlist {
