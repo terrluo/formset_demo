@@ -15,6 +15,7 @@ class SuccessMessageMixin(object):
     def get_success_url(self):
         messages.success(self.request, self.success_message)
         print('xxxx')
+        print('aaaa')
         return super(SuccessMessageMixin, self).get_success_url()
 
 
